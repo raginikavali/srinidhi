@@ -1,0 +1,1 @@
+{"name":"Srinidhi Environments","values":[{"key":"baseUrl","value":"http://localhost:8000","enabled":true},{"key":"prodBaseUrl","value":"https://api.srinidhiconstructions.in","enabled":true}],"_postman_variable_scope":"environment"}

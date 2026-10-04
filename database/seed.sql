@@ -1,0 +1,16 @@
+USE srinidhi_constructions;
+INSERT INTO admins (name,email,password_hash) VALUES ('Srinidhi Admin','admin@srinidhiconstructions.in','$2y$10$IsRffPqO7o.Uge2OAXXc6Ou8tj2CoY8uJ5SLFu5MIVZxjCNPeaLOa');
+INSERT INTO services (title,slug,short_description,description,icon_or_image,display_order) VALUES
+('Residential Construction','residential-construction','Thoughtful homes shaped around how your family lives.','From first brick to final handover, we build considered residences with clear communication and durable materials.','home',1),
+('Commercial Construction','commercial-construction','Workplaces that make a confident first impression.','Efficient commercial spaces delivered with disciplined planning, safety and finish quality.','building-2',2),
+('Interior Fit-outs','interior-fit-outs','Interiors with purpose, polish and a sense of place.','Complete fit-outs for offices, retail and hospitality with one accountable project team.','sparkles',3),
+('Renovation & Restoration','renovation-restoration','Give good spaces a better second chapter.','Sensitive structural upgrades and modern renovations that respect what already works.','refresh-cw',4),
+('Project Management','project-management','A calm, capable hand from brief to key handover.','Programme, procurement and site coordination managed with complete visibility.','clipboard-check',5);
+INSERT INTO projects (title,slug,category,status,location,area_sqft,description,cover_image,is_featured) VALUES
+('The Courtyard House','the-courtyard-house','residential','completed','Whitefield, Bengaluru',3250,'A light-filled family home arranged around a planted internal courtyard.','https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85',1),
+('Vertex Business Centre','vertex-business-centre','commercial','completed','Koramangala, Bengaluru',28000,'A flexible workplace designed for a growing technology company.','https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85',1),
+('Indiranagar Residence','indiranagar-residence','residential','ongoing','Indiranagar, Bengaluru',4100,'A warm, modern home with a generous terrace and honest materials.','https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85',1),
+('Mango Tree Villas','mango-tree-villas','residential','upcoming','Devanahalli, Bengaluru',18600,'Six quiet villas planned around old trees and shared green space.','https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85',0),
+('Nexus Retail Arcade','nexus-retail-arcade','commercial','completed','HSR Layout, Bengaluru',14500,'A street-facing retail destination with durable, flexible frontage.','https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=85',0),
+('Aster Logistics Hub','aster-logistics-hub','industrial','ongoing','Hosur Road, Bengaluru',52000,'A high-performance logistics facility built for daily movement.','https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=85',0);
+INSERT INTO achievements (label,value,icon,display_order) VALUES ('Years building','16+','calendar',1),('Projects delivered','72+','check-circle',2),('Sq ft delivered','1.8M','ruler',3),('Referral-led work','98%','heart',4);

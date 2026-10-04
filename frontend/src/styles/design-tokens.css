@@ -1,0 +1,22 @@
+:root {
+  --sc-color-ink: #202525;
+  --sc-color-ink-soft: #56605b;
+  --sc-color-accent: #e76f32;
+  --sc-color-accent-deep: #c95720;
+  --sc-color-ground: #f4f2ed;
+  --sc-color-surface: #fbfaf7;
+  --sc-color-line: #d9d8d2;
+  --sc-space-1: 4px;
+  --sc-space-2: 8px;
+  --sc-space-3: 12px;
+  --sc-space-4: 16px;
+  --sc-space-5: 24px;
+  --sc-space-6: 32px;
+  --sc-space-7: 48px;
+  --sc-space-8: 64px;
+  --sc-space-9: 96px;
+  --sc-radius-none: 0;
+  --sc-radius-sm: 2px;
+  --sc-shadow-lift: 0 18px 45px rgba(32, 37, 37, .12);
+  --sc-shadow-panel: 0 4px 22px rgba(32, 37, 37, .08);
+}

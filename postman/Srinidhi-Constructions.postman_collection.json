@@ -1,0 +1,44 @@
+{
+  "info": { "name": "Srinidhi Constructions API", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json" },
+  "variable": [{ "key": "baseUrl", "value": "http://localhost:8000" }, { "key": "projectId", "value": "1" }, { "key": "serviceId", "value": "1" }, { "key": "enquiryId", "value": "1" }],
+  "event": [{ "listen": "test", "script": { "exec": ["pm.test('API envelope is present', () => pm.expect(pm.response.json()).to.have.all.keys('success','data','message','errors'));" ] } }],
+  "item": [
+    { "name": "Public", "item": [
+      { "name": "List services", "request": { "method": "GET", "url": "{{baseUrl}}/api/services" } },
+      { "name": "Filter projects", "request": { "method": "GET", "url": "{{baseUrl}}/api/projects?category=residential&status=completed" } },
+      { "name": "Project by slug", "request": { "method": "GET", "url": "{{baseUrl}}/api/projects/the-courtyard-house" } },
+      { "name": "Invalid project slug (404)", "request": { "method": "GET", "url": "{{baseUrl}}/api/projects/missing-project" } },
+      { "name": "Create enquiry (201 + DB insert)", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\"name\":\"Ananya Rao\",\"email\":\"ananya@example.com\",\"phone\":\"9876543210\",\"subject\":\"Villa construction\",\"message\":\"We are planning a 3000 sq ft home in North Bengaluru.\"}" }, "url": "{{baseUrl}}/api/enquiries" } },
+      { "name": "Invalid enquiry (422)", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\"name\":\"A\",\"email\":\"bad\",\"message\":\"short\"}" }, "url": "{{baseUrl}}/api/enquiries" } }
+    ] },
+    { "name": "Auth", "item": [
+      { "name": "Unauthorized dashboard (401)", "request": { "method": "GET", "url": "{{baseUrl}}/api/dashboard/stats" } },
+      { "name": "Login success", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\"email\":\"admin@srinidhiconstructions.in\",\"password\":\"password\"}" }, "url": "{{baseUrl}}/api/auth/login" } },
+      { "name": "Login generic failure (401)", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\"email\":\"unknown@example.com\",\"password\":\"wrong\"}" }, "url": "{{baseUrl}}/api/auth/login" } },
+      { "name": "Verify session", "request": { "method": "GET", "url": "{{baseUrl}}/api/auth/verify" } },
+      { "name": "Dashboard stats", "request": { "method": "GET", "url": "{{baseUrl}}/api/dashboard/stats" } },
+      { "name": "Logout", "request": { "method": "POST", "url": "{{baseUrl}}/api/auth/logout" } }
+    ] },
+    { "name": "Admin projects", "item": [
+      { "name": "List projects", "request": { "method": "GET", "url": "{{baseUrl}}/api/projects" } },
+      { "name": "Create project (201 + DB insert)", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\"title\":\"Oakline Studio\",\"category\":\"commercial\",\"status\":\"upcoming\",\"location\":\"Hebbal, Bengaluru\",\"area_sqft\":8000,\"description\":\"A flexible studio workplace.\",\"cover_image\":\"https://images.unsplash.com/photo-1497366811353-6870744d04b2\"}" }, "url": "{{baseUrl}}/api/projects" } },
+      { "name": "Create project missing fields (400)", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\"title\":\"A\"}" }, "url": "{{baseUrl}}/api/projects" } },
+      { "name": "Read project by ID", "request": { "method": "GET", "url": "{{baseUrl}}/api/projects/{{projectId}}" } },
+      { "name": "Update project", "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\"title\":\"Oakline Studio Updated\",\"category\":\"commercial\",\"status\":\"ongoing\",\"location\":\"Hebbal, Bengaluru\",\"area_sqft\":8200,\"description\":\"Updated studio workplace.\",\"cover_image\":\"https://images.unsplash.com/photo-1497366811353-6870744d04b2\"}" }, "url": "{{baseUrl}}/api/projects/{{projectId}}" } },
+      { "name": "Delete invalid project (404)", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/projects/999999" } },
+      { "name": "Delete project", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/projects/{{projectId}}" } }
+    ] },
+    { "name": "Admin services", "item": [
+      { "name": "List services", "request": { "method": "GET", "url": "{{baseUrl}}/api/services" } },
+      { "name": "Create service", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\"title\":\"Site Audits\",\"short_description\":\"Practical site reviews.\",\"description\":\"Independent review of build quality and programme.\",\"icon_or_image\":\"clipboard-check\"}" }, "url": "{{baseUrl}}/api/services" } },
+      { "name": "Update service", "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\"title\":\"Site Audits Updated\",\"short_description\":\"Practical site reviews.\",\"description\":\"Independent review of build quality and programme.\",\"icon_or_image\":\"clipboard-check\"}" }, "url": "{{baseUrl}}/api/services/{{serviceId}}" } },
+      { "name": "Delete service", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/services/{{serviceId}}" } }
+    ] },
+    { "name": "Admin enquiries", "item": [
+      { "name": "List enquiries", "request": { "method": "GET", "url": "{{baseUrl}}/api/enquiries" } },
+      { "name": "Update enquiry status", "request": { "method": "PATCH", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\"status\":\"in_progress\"}" }, "url": "{{baseUrl}}/api/enquiries/{{enquiryId}}" } },
+      { "name": "Delete invalid enquiry (404)", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/enquiries/999999" } },
+      { "name": "Delete enquiry", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/enquiries/{{enquiryId}}" } }
+    ] }
+  ]
+}

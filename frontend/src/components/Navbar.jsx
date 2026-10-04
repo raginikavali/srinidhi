@@ -1,0 +1,4 @@
+import { Link, NavLink } from 'react-router-dom'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
+import { useState } from 'react'
+export default function Navbar() { const [open, setOpen] = useState(false); const links = [['About', '/about'], ['Services', '/services'], ['Projects', '/projects'], ['Contact', '/contact']]; return <header className="nav"><div className="nav-inner"><Link to="/" className="brand" onClick={() => setOpen(false)}><span className="brand-mark">S</span><span>Srinidhi<br /><b>Constructions</b></span></Link><nav className={open ? 'nav-links open' : 'nav-links'}>{links.map(([label, path]) => <NavLink key={path} to={path} onClick={() => setOpen(false)}>{label}</NavLink>)}<Link className="nav-cta" to="/contact" onClick={() => setOpen(false)}>Start a conversation <ArrowUpRight size={16} /></Link></nav><button className="menu-btn" onClick={() => setOpen(!open)} aria-label="Toggle navigation">{open ? <X /> : <Menu />}</button></div></header> }

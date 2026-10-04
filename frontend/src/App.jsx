@@ -1,0 +1,15 @@
+import { Routes, Route, useLocation } from 'react-router-dom'
+import { AnimatePresence, motion } from 'framer-motion'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import Home from './pages/Home'
+import About from './pages/About'
+import Services from './pages/Services'
+import ServiceDetails from './pages/ServiceDetails'
+import Projects from './pages/Projects'
+import ProjectDetails from './pages/ProjectDetails'
+import Contact from './pages/Contact'
+import NotFound from './pages/NotFound'
+import Admin from './pages/Admin'
+function PublicApp() { const location = useLocation(); return <><Navbar /><AnimatePresence mode="wait"><motion.main key={location.pathname} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: .3 }}><Routes location={location}><Route path="/" element={<Home />} /><Route path="/about" element={<About />} /><Route path="/services" element={<Services />} /><Route path="/services/:slug" element={<ServiceDetails />} /><Route path="/projects" element={<Projects />} /><Route path="/projects/:slug" element={<ProjectDetails />} /><Route path="/contact" element={<Contact />} /><Route path="*" element={<NotFound />} /></Routes></motion.main></AnimatePresence><Footer /></> }
+export default function App() { return <Routes><Route path="/admin/*" element={<Admin />} /><Route path="*" element={<PublicApp />} /></Routes> }

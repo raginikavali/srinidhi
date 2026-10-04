@@ -1,0 +1,4 @@
+import { ArrowUpRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { resolveImage } from '../api/client'
+export default function ProjectCard({ project, featured = false }) { return <Link to={`/projects/${project.slug}`} className={featured ? 'project-card featured' : 'project-card'}><div className="project-image"><img src={resolveImage(project.cover_image)} alt={`${project.title} in ${project.location}`} /><span className="project-status">{project.status}</span></div><div className="project-meta"><div><span className="eyebrow">{project.category}</span><h3>{project.title}</h3><p>{project.location} · {Number(project.area_sqft).toLocaleString('en-IN')} sq ft</p></div><span className="circle-arrow"><ArrowUpRight size={18} /></span></div></Link> }

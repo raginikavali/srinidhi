@@ -1,0 +1,3 @@
+<?php
+declare(strict_types=1);
+final class Response { public static function json(bool $success, mixed $data, string $message, int $status = 200, ?array $errors = null): never { http_response_code($status); echo json_encode(['success' => $success, 'data' => $data, 'message' => $message, 'errors' => $errors], JSON_UNESCAPED_SLASHES); exit; } public static function ok(mixed $data, string $message = 'OK'): never { self::json(true, $data, $message); } public static function error(string $message, int $status = 400, ?array $errors = null): never { self::json(false, null, $message, $status, $errors); } }
